@@ -1,0 +1,44 @@
+version: "3.9"
+
+volumes:
+  pgdata:
+
+
+services:
+  django:
+    build:
+      context: .
+    restart: always
+    ports:
+      - "8000:8000"
+    env_file:
+      - docker/env/.env.dev
+    volumes:
+      - ./:/app
+    depends_on:
+      - postgres
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    container_name: todo_django_dev
+
+  nginx:
+    image: nginx:stable-alpine
+    restart: always
+    working_dir: /app
+    ports:
+      - "80:80"
+    volumes:
+      - ./docker/nginx/dev/:/etc/nginx/conf.d:ro
+    links:
+      - django
+    depends_on:
+      - django
+    container_name: todo_nginx_dev
+
+  postgres:
+    image: postgres:alpine
+    restart: always
+    env_file:
+      - docker/env/.env.dev
+    volumes:
+      - pgdata:/var/lib/postgresql/data/
+    container_name: todo_postgres_dev
