@@ -42,9 +42,9 @@
 
 - Run the **dev build**
 
-    ```shell
-    docker compose -f docker-compose.dev.yml up --build -d
-    ```
+  ```shell
+  docker compose -f docker-compose.dev.yml up --build -d
+  ```
 
 - Run the **prod build** and get a SSL certificate
 
@@ -80,10 +80,10 @@
     docker compose up -d
     ```
 
-  - Set up automatic certificate renewal every 60 days in cron tab
+  - Run the setup script
 
-     ```shell
-    echo "0 0 1 */2 * ./todo_app/renew_cert.sh" | crontab -
+    ```shell
+    bash setup.sh
     ```
 
 ### :x: Stop
