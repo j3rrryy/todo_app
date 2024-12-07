@@ -28,61 +28,13 @@
 
 ## :hammer_and_wrench: Getting started
 
-- Copy `.env.dev` file from `examples/docker/env/` to `docker/env/` folder fill it in
-
-- **(For prod)** Copy `.env.prod` file from `examples/docker/env/` to `docker/env/` folder and fill it in
-
-- **(For prod)** Copy `nginx.conf` file from `examples/docker/nginx/prod/` to `docker/nginx/prod` folder and fill it in
-
-- **(For prod)** Copy `docker-compose.yml` file from `examples/` to `/` folder and fill it in
+- Copy `.env` file from `examples/` to `docker/` folder fill it in
 
 ### :rocket: Start
 
-- Run the **dev build**
-
   ```shell
-  docker compose -f docker-compose.dev.yml up --build -d
+  docker compose up --build -d
   ```
-
-- Run the **prod build** and get a SSL certificate
-
-  - Build the project
-
-    ```shell
-    docker compose build
-    ```
-
-  - Start Docker and get a certificate
-
-    ```shell
-    docker compose up nginx certbot
-    ```
-
-  - Stop your containers to continue
-
-    ```shell
-    docker compose stop
-    ```
-
-  - Comment out the command in `docker-compose.yml`
-
-    ```shell
-    command: certonly --webroot --webroot-path=/var/www/certbot/ --email <your_email> --agree-tos --no-eff-email -d <domain (example.com)> -d <domain (www.example.com)>
-    ```
-
-  - Uncomment the part of nginx config in `docker/nginx/prod/django.conf`
-
-  - Start Docker again
-
-    ```shell
-    docker compose up -d
-    ```
-
-  - Run the setup script
-
-    ```shell
-    bash setup.sh
-    ```
 
 ### :x: Stop
 
