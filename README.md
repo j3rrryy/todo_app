@@ -43,7 +43,7 @@
 
 ## :hammer_and_wrench: Getting started
 
-- Copy `.env` file from `examples/` to `docker/` folder fill it in
+- Copy `.env` file from `examples/` to `docker/` folder and fill it in
 
 ### :rocket: Start
 
